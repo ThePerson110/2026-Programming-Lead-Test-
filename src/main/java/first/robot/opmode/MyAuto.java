@@ -5,10 +5,10 @@
  */
 package first.robot.opmode;
 
+import org.wpilib.system.Timer;
 import first.robot.Robot;
 import org.wpilib.opmode.Autonomous;
 import org.wpilib.opmode.PeriodicOpMode;
-import org.wpilib.system.Timer;
 
 @Autonomous(name = "Shoot Auto", group = "Competition")
 public class MyAuto extends PeriodicOpMode {

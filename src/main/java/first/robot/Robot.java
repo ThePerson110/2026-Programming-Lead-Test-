@@ -1,6 +1,6 @@
 package first.robot;
 
-import first.robot.validation.ValidationRunner;
+import first.robot.validations.ValidationRunner;
 import org.wpilib.framework.OpModeRobot;
 
 public class Robot extends OpModeRobot {

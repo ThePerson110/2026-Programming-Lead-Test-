@@ -1,179 +1,271 @@
 # 2026 Programming Lead Interview
 
+## Interview Format
+
+The Programming Lead Interview will be approximately **15 minutes**.
+
+During the interview, you will:
+
+* Work through the provided programming test
+* Answer interview questions based on the information in this overview
+* Explain your understanding of the existing code
+* Explain your reasoning when identifying and fixing problems
+* Discuss the changes you made to the project
+
+The purpose of the interview is not only to see whether you can fix the code, but also to understand **how you approach problems, communicate your reasoning, and understand the code you are working with**.
+
 ## What You Will Be Expected To
-    During this interview you may be asked to:
-    - Read existing code
-    - Explain what the code is doing
-    - Identify issues
-    - Fix bugs
-    - Make improvements
-    - Implement small changes
 
-    The goal is not to finish everything perfectly.
+During the Programming Lead Interview, you will work with a provided FRC programming project and demonstrate your ability to:
 
-    The goal is to demonstrate:
+* Clone and work with a GitHub repository
+* Read and understand existing code
+* Explain what the code is doing
+* Identify bugs and issues
+* Debug and fix existing code
+* Make appropriate improvements
+* Implement small changes when requested
+* Test your changes
+* Commit and push your work using Git
 
-    - Problem solving
-    - Debugging ability
-    - Communication
-    - Code comprehension
+You will be given the same general project and documentation as the other candidates, but each candidate will have their **own GitHub repository** to work in.
 
-## You will be given a way to test your code
-## The use of AI is not allowed
+You are not expected to memorize WPILib or CTRE APIs. You may use the documentation provided with the test and should focus on demonstrating your ability to understand code, solve problems, and explain your reasoning.
 
-## Robot Overview
-    This project is a simplified FRC robot used for the programming lead interview.
-    It is safe to assume that everything is imported correctly.
-    What the robot is supposed to is in:ExpectedRobotBehavior
-    What the robot is currently doing is in: CurrentRobotState
+---
 
-    The robot contains three main systems:
+## GitHub Workflow
 
-    ### Drivetrain
+Each candidate will receive their own GitHub repository containing the programming lead test.
 
-    The drivetrain is a four-motor tank drive consisting of:
+The repository will contain a project with intentional issues for you to identify and fix.
 
-    - Left Leader Motor
-    - Left Follower Motor
-    - Right Leader Motor
-    - Right Follower Motor
+### At the Beginning
 
-    The drivetrain is controlled using arcade drive.
+1. Clone your assigned GitHub repository.
+2. Open the project in your development environment.
+3. Review the provided documentation and existing code.
+4. Begin identifying the problems in the project.
 
-    ### Intake System
+### While Working
 
-    The intake system consists of:
+* Make changes directly in your local copy.
+* Test your changes as you work.
+* Use Git to keep track of your progress.
+* Use the provided validation system to check your work.
 
-    - Intake Launcher Motor
-    - Feeder Motor
+### Before You Finish
 
-    The intake system is responsible for moving game pieces through the robot and launching them.
+Make sure that:
 
-    ### Autonomous
+* Your changes are saved.
+* Your code builds successfully.
+* You have run the validation system.
+* Your changes have been committed.
+* Your final changes have been pushed to your assigned GitHub repository.
 
-    The robot contains a single autonomous routine that:
+Your GitHub repository will be used to review your completed work and your use of Git.
 
-    1. Starts the intake launcher
-    2. Runs the feeder
-    3. Launches game pieces for a fixed amount of time
-    4. Stops all mechanisms
+---
 
-    ---
-    ## Controls
+## Testing Your Code
 
-    The robot is operated using a single Xbox controller.
+You will be provided with a validation system that can automatically check your work.
 
-    ### Drivetrain
+After making your changes, run:
 
-    The drivetrain uses arcade drive:
+```powershell
+.\gradlew validateRobot
+```
 
-    - Left Stick Y Axis: Forward and backwards movement
-    - Right Stick X Axis: Turning
+The validation system will check whether your implementation meets the requirements of the test.
 
-    ### Intake Launcher
+A successful build does **not necessarily mean that you have completed the test correctly**. Make sure you run the validation command before finishing.
 
-    - A Button: Run intake launcher
+You can also build the project with:
 
-    ### Feeder
+```powershell
+.\gradlew build
+```
 
-    - B Button: Run feeder
+If the project builds successfully, Gradle will report:
 
-    ### Autonomous
+```text
+BUILD SUCCESSFUL
+```
 
-    During autonomous mode, no driver input is used.
+---
 
-    The robot will automatically:
+## AI Policy
 
-    1. Start the intake launcher
-    2. Run the feeder
-    3. Score game pieces for a fixed amount of time
-    4. Stop all mechanisms
-    ## Files In Scope
+**The use of AI is not allowed during the Programming Lead Interview.**
 
-    The following files are considered fair game during the interview.
+The purpose of this test is to evaluate your own:
 
-    ### Robot.java
+* Problem-solving skills
+* Debugging process
+* Code comprehension
+* Programming knowledge
+* Communication
+* Ability to work independently
 
-    The main entry point of the robot program.
+You may use the documentation and resources provided as part of the interview.
 
-    Responsibilities:
+---
 
-    - Create RobotContainer
-    - Manage robot lifecycle events
+# Robot Overview
 
-    ### RobotContainer.java
+The project represents a simplified FRC robot with three main systems:
 
-    The central location where the robot is assembled.
+* **Drivetrain**
+* **Intake**
+* **Autonomous**
 
-    Responsibilities:
+You should be able to read the existing code and explain how these systems work together.
 
-    - Create subsystems
-    - Create commands
-    - Manage dependencies between systems
+You may assume that the necessary imports are already provided unless the test specifically asks you to address them.
 
-    ### Constants.java
+The documentation will include:
 
-    Stores robot-wide constants and configuration values.
+### ExpectedRobotBehavior
 
-    Examples:
+Describes what the robot **should** do.
 
-    - CAN IDs
-    - Motor IDs
-    - Configuration values
+### CurrentRobotState
 
-    ### DriveSubsystem.java
+Describes what the robot **currently** does.
 
-    Controls the drivetrain.
+Your job is to compare the expected behavior with the current implementation and determine what needs to be changed.
 
-    Responsibilities:
+---
 
-    - Configure drive motors
-    - Configure followers
-    - Control robot movement
-    - Stop drivetrain movement
+## Controller Controls
 
-    ### IntakeSubsystem.java
+The robot uses an Xbox controller.
 
-    Controls game piece manipulation.
+| Control     | Function              |
+| ----------- | --------------------- |
+| Left Stick  | Drive                 |
+| Right Stick | Arcade drive rotation |
+| A Button    | Run launcher/intake   |
+| B Button    | Run feeder            |
 
-    Responsibilities:
+Autonomous mode will follow the steps described in the provided documentation.
 
-    - Control intake launcher
-    - Control feeder
-    - Stop mechanisms
+---
 
-    ### MyAuto.java
+# Files In Scope
 
-    Controls autonomous behavior.
+### `Robot.java`
 
-    Responsibilities:
+The main robot entry point.
 
-    - Execute autonomous routine
-    - Manage autonomous timing
-    - Control scoring actions
+Responsible for:
 
+* Starting the robot
+* Creating the `RobotContainer`
+* Running the appropriate robot lifecycle methods
 
-## Expectations
-    You are not expected to:
+### `RobotContainer.java`
 
-    - Memorize WPILib APIs
-    - Memorize CTRE APIs
-    - Know this project beforehand
+Responsible for:
 
-    You are expected to:
+* Creating subsystems
+* Creating commands
+* Configuring controller inputs
+* Connecting controls to robot actions
 
-    - Explain your thought process
-    - Work through problems logically
-    - Ask questions when neede,d I will give explanations to the best of my abltiy and depending on the question
+### `Constants.java`
 
-## What We Are Looking For
+Contains robot constants such as:
 
-    We are looking for programmers who demonstrate:
+* CAN IDs
+* Motor IDs
+* Autonomous settings
 
-    - Logical thinking
-    - Problem solving
-    - Communication
+### `DriveSubsystem.java`
 
-    A perfect solution is not expected.
+Controls the robot's drivetrain.
 
-    The ability to explain your reasoning is often more important than immediately finding the correct answer.
+You should understand:
+
+* Which motors are leaders and followers
+* How the drivetrain receives controller input
+* How the motors are commanded
+
+### `IntakeSubsystem.java`
+
+Controls the intake and feeder mechanisms.
+
+You should understand:
+
+* How the intake is controlled
+* How the feeder is controlled
+* How the mechanisms are stopped
+
+### `MyAuto.java`
+
+Contains the autonomous routine.
+
+You should understand:
+
+* What the autonomous routine is intended to do
+* How long it runs
+* How the robot's mechanisms are controlled during autonomous
+
+---
+
+# What We Expect From You
+
+You are **not expected to know everything immediately**.
+
+We are looking for your ability to:
+
+* Read unfamiliar code
+* Break problems into smaller pieces
+* Find the source of a problem
+* Explain your thought process
+* Test possible solutions
+* Use Git appropriately
+* Ask questions when you are stuck
+* Learn from errors
+
+You do not need to memorize every WPILib or CTRE function.
+
+What matters most is that you can **reason through the problem and explain why you are making a particular change**.
+
+---
+
+# What We Are Looking For
+
+The Programming Lead role requires more than simply writing code.
+
+We are looking for:
+
+### Logical Thinking
+
+Can you understand what the code is supposed to do and determine where something is going wrong?
+
+### Problem Solving
+
+Can you investigate an issue, test possible solutions, and make a reasonable fix?
+
+### Code Comprehension
+
+Can you read existing code and explain what it does?
+
+### Communication
+
+Can you clearly explain your reasoning and the changes you make?
+
+### Git Usage
+
+Can you clone a repository, commit your work, and push your changes?
+
+### Learning Ability
+
+When you encounter something you do not know, can you work through it rather than immediately giving up?
+
+A perfect solution is **not expected**.
+
+Your reasoning, problem-solving process, and ability to understand the code are more important than immediately finding the answer.
