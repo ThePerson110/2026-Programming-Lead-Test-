@@ -1,7 +1,6 @@
-package first.robot.validation;
+package first.robot.validations;
 
 import first.robot.Constants;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -79,14 +78,8 @@ public class ValidationTests {
   }
 
   private String readDriveSubsystem() {
-    Path path = Path.of(
-        "src",
-        "main",
-        "java",
-        "first",
-        "robot",
-        "subsystems",
-        "DriveSubsystem.java");
+    Path path =
+        Path.of("src", "main", "java", "first", "robot", "subsystems", "DriveSubsystem.java");
 
     try {
       return Files.readString(path);
@@ -96,14 +89,8 @@ public class ValidationTests {
   }
 
   private String readIntakeSubsystem() {
-    Path path = Path.of(
-        "src",
-        "main",
-        "java",
-        "first",
-        "robot",
-        "subsystems",
-        "IntakeSubsystem.java");
+    Path path =
+        Path.of("src", "main", "java", "first", "robot", "subsystems", "IntakeSubsystem.java");
 
     try {
       return Files.readString(path);
@@ -113,8 +100,6 @@ public class ValidationTests {
   }
 
   private String normalize(String source) {
-    return source
-        .replaceAll("\\s+", "")
-        .toLowerCase();
+    return source.replaceAll("\\s+", "").toLowerCase();
   }
 }

@@ -156,5 +156,5 @@ spotless {
 
 tasks.register('validateRobot', JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'first.robot.validation.ValidationRunner'
+    mainClass = 'first.robot.validations.ValidationRunner'
 }

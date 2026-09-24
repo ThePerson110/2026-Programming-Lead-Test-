@@ -1,6 +1,7 @@
 package first.robot.opmode;
 
-import org.wpilib.driverstation.XboxController;import first.robot.Robot;
+import first.robot.Robot;
+import org.wpilib.driverstation.XboxController;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
 
