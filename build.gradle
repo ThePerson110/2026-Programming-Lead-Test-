@@ -106,8 +106,8 @@ jar {
 tasks.withType(JavaCompile) {
     options.compilerArgs.add '-XDstringConcat=inline'
 }
-
 project.compileJava.dependsOn(spotlessApply)
+
 spotless {
     java {
         target fileTree('.') {
@@ -120,6 +120,7 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
+
     groovyGradle {
         target fileTree('.') {
             include '**/*.gradle'
@@ -130,6 +131,7 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
+
     format 'xml', {
         target fileTree('.') {
             include '**/*.xml'
@@ -140,6 +142,7 @@ spotless {
         leadingTabsToSpaces(2)
         endWithNewline()
     }
+
     format 'misc', {
         target fileTree('.') {
             include '**/*.md', '**/.gitignore'
@@ -149,4 +152,9 @@ spotless {
         leadingTabsToSpaces(2)
         endWithNewline()
     }
+}
+
+tasks.register('validateRobot', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'first.robot.validation.ValidationRunner'
 }

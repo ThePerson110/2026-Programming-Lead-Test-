@@ -1,25 +1,43 @@
-/*
- * Copyright 2026 FRCSoftware
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
 package first.robot.opmode;
 
 import first.robot.Robot;
+import org.wpilib.driverstation.XboxController;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
 
 @Teleop
 public class MyTeleop extends PeriodicOpMode {
+
   private final Robot robot;
 
-  /** The Robot instance is passed into the opmode via the constructor. */
+  private final XboxController controller = new XboxController(0);
+
   public MyTeleop(Robot robot) {
+
     this.robot = robot;
   }
 
   @Override
   public void periodic() {
-    /* Called periodically (set time interval) while the robot is enabled. */
+
+    robot.getContainer().arcadeDriveCommand.execute(-controller.getLeftY(), controller.getRightX());
+
+    if (controller.getAButton()) {
+
+      robot.getContainer().runIntakeCommand.execute(1.0);
+
+    } else {
+
+      robot.getContainer().runIntakeCommand.execute(0.0);
+    }
+
+    if (controller.getBButton()) {
+
+      robot.getContainer().feedCommand.execute(1.0);
+
+    } else {
+
+      robot.getContainer().feedCommand.execute(0.0);
+    }
   }
 }
